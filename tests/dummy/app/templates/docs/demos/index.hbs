@@ -1,1 +1,20 @@
 <h1>Basic</h1>
+<p>Authenticated = {{ session.isAuthenticated }}</p>
+
+<form onsubmit={{ action "login" username password }}>
+  <div>
+    <label for="js-username">Username:</label>
+    {{ input value=username type="text" id="js-username"}}
+  </div>
+  <div>
+    <label for="js-password">Password:</label>
+    {{ input value=password type="password" id="js-password"}}
+  </div>
+  <div>
+    <button type="submit">
+      Login
+    </button>
+  </div>
+
+
+</form>
