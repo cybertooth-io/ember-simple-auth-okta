@@ -1,7 +1,7 @@
 ember-simple-auth-okta
 ==============================================================================
 
-[Short description of the addon.]
+Ember Simple Auth implementation wrapping `okta-auth-js`.
 
 
 Compatibility
@@ -11,18 +11,15 @@ Compatibility
 * Ember CLI v2.13 or above
 
 
-Installation
+Docs
 ------------------------------------------------------------------------------
 
-```
-ember install ember-simple-auth-okta
-```
+[View the docs here](https://cybertooth-io.github.io/ember-simple-auth-okta/).
 
-
-Usage
+Dependencies
 ------------------------------------------------------------------------------
 
-[Longer description of how to use the addon in apps.]
+I maintain a list of the [dependencies](DEPENDENCIES.md) that I've mixed into this addon project.
 
 
 Contributing
@@ -35,3 +32,11 @@ License
 ------------------------------------------------------------------------------
 
 This project is licensed under the [MIT License](LICENSE.md).
+
+Credits
+------------------------------------------------------------------------------
+
+This addon was made possible with the support of:
+
+1. [Ember Simple Auth](https://github.com/simplabs/ember-simple-auth)
+1. [Okta's okta-auth-js Library](https://github.com/okta/okta-auth-js)

@@ -8,7 +8,8 @@ const Router = AddonDocsRouter.extend({
 
 Router.map(function () {
   docsRoute(this, function () {
-    /* Your docs routes go here */
+    this.route('demos', function () {
+    });
   });
   this.route('docs');
   this.route('not-found', { path: '/*path' });
