@@ -1,5 +1,6 @@
 module.exports = {
   root: true,
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2017,
     sourceType: 'module'
@@ -14,8 +15,7 @@ module.exports = {
   env: {
     browser: true
   },
-  rules: {
-  },
+  rules: {},
   overrides: [
     // node files
     {
@@ -23,7 +23,7 @@ module.exports = {
         '.eslintrc.js',
         '.template-lintrc.js',
         'ember-cli-build.js',
-        'index.js',
+        'index.md.js',
         'testem.js',
         'blueprints/*/index.js',
         'config/**/*.js',
