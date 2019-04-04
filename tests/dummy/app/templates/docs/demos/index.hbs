@@ -1,23 +1,54 @@
-<h1>Basic</h1>
-<p>Authenticated = {{ session.isAuthenticated }}</p>
+<h1>
+  Basic
+  <small class="docs-text-grey-light">
+    Authenticated
+    =
+    <span class="js-is-authenticated">{{session.isAuthenticated}}</span>
+  </small>
+</h1>
 
-<form onsubmit={{ action "login" username password }}>
-  <div>
-    <label for="js-username">Username:</label>
-    {{ input value=username type="text" id="js-username"}}
+<form
+  class="docs-bg-white docs-shadow-md docs-rounded docs-px-8 docs-pt-6 docs-pb-8 docs-mb-4"
+  onsubmit={{action "login" username password}}>
+  <div class="docs-mb-4">
+    <label
+      class="docs-block docs-text-grey-darker docs-text-sm docs-font-bold docs-mb-2"
+      for="js-username">
+      Username
+    </label>
+    {{input
+      autocomplete="username"
+      autofocus=true
+      class="docs-shadow docs-appearance-none docs-border docs-rounded docs-w-full docs-py-2 docs-px-3 docs-text-grey-darker docs-leading-tight focus:docs-outline-none focus:docs-shadow-outline"
+      id="js-username"
+      type="text"
+      value=username
+    }}
   </div>
-  <div>
-    <label for="js-password">Password:</label>
-    {{ input value=password type="password" id="js-password"}}
+  <div class="docs-mb-4">
+    <label
+      class="docs-block docs-text-grey-darker docs-text-sm docs-font-bold docs-mb-2"
+      for="js-password">
+      Password
+    </label>
+    {{input
+      autocomplete="current-password"
+      class="docs-shadow docs-appearance-none docs-border docs-rounded docs-w-full docs-py-2 docs-px-3 docs-text-grey-darker docs-leading-tight focus:docs-outline-none focus:docs-shadow-outline"
+      id="js-password"
+      type="password"
+      value=password
+    }}
   </div>
-  <div>
-    <button type="submit">
-      Login
+  <div class="flex items-center justify-between">
+    <button
+      class="docs-bg-brand docs-text-white docs-font-bold docs-py-2 docs-px-4 docs-rounded focus:docs-outline-none focus:docs-shadow-outline"
+      type="submit">
+      Sign In
     </button>
-    <button type="button" onclick={{ action "logout" }}>
-      Logout
-    </button>
+    <a {{action "logout"}}
+      class="docs-inline-block docs-align-baseline docs-font-bold docs-text-sm docs-text-brand"
+      href="javascript:void(0);">
+      Sign Out
+    </a>
   </div>
-
-
 </form>
