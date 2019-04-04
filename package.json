@@ -1,13 +1,37 @@
 {
   "name": "ember-simple-auth-okta",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1-rc.0",
+  "description": "Ember Simple Auth implementation wrapping `okta-auth-js`.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-simple-auth",
+    "okta",
+    "oauth2",
+    "oidc",
+    "octa-auth-js"
   ],
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cybertooth-io/ember-simple-auth-okta"
+  },
   "license": "MIT",
-  "author": "",
+  "author": {
+    "name": "cybertooth.io",
+    "email": "dev@cybertooth.io",
+    "url": "http://cybertooth.io"
+  },
+  "contributors": [
+    {
+      "name": "Brad Fontaine",
+      "email": "bradf.83@gmail.com",
+      "url": "https://bradf83.github.io/"
+    },
+    {
+      "name": "Dan Nelson",
+      "email": "dan@cybertooth.io",
+      "url": "https://nadnoslen.github.io/"
+    }
+  ],
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -65,6 +89,7 @@
     "node": "6.* || 8.* || >= 10.*"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "demoURL": "https://cybertooth-io.github.io/ember-data-autocomplete-js/docs/demos"
   }
 }
