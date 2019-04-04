@@ -1,0 +1,4 @@
+[ver:1,total:600]
+tests/dummy/app/templates/docs/index.md:460,1554390000:460,m
+.gtm/terminal.app:120,1554390000:120,r
+addon/authenticators/okta.js:20,1554390000:20,r
