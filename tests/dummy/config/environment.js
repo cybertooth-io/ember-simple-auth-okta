@@ -18,8 +18,19 @@ module.exports = function (environment) {
     },
 
     APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
+      'ember-simple-auth-okta': {
+        /**
+         * This is the exact `config` hash that will be passed into your `OktaAuth` instance.
+         * Customize accordingly.
+         * @see https://github.com/okta/okta-auth-js#configuration-reference
+         */
+        config: {
+          /**
+           * This is one of Cybertooth.io's dev Okta instances.
+           */
+          url: 'https://dev-308387.okta.com'
+        }
+      }
     }
   };
 
