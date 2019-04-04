@@ -1,0 +1,16 @@
+[ver:1,total:2940]
+app/services/configuration.js:1004,1554332400:299,1554336000:705,m
+addon/authenticators/okta.js:804,1554332400:552,1554336000:252,m
+app/authenticators/okta.js:250,1554332400:127,1554336000:123,r
+tests/dummy/app/router.js:195,1554336000:195,m
+tests/dummy/app/templates/docs/index.md:195,1554336000:195,m
+tests/dummy/app/templates/docs/configuration.md:160,1554336000:160,m
+config/environment.js:94,1554332400:70,1554336000:24,r
+.gtm/terminal.app:69,1554332400:24,1554336000:45,r
+tests/dummy/config/environment.js:50,1554332400:20,1554336000:30,r
+tests/dummy/app/templates/docs.hbs:32,1554336000:32,m
+tests/dummy/app/controllers/docs/demos/index.js:24,1554332400:12,1554336000:12,m
+.circleci/config.yml:24,1554332400:12,1554336000:12,m
+tests/dummy/app/templates/docs/configuration.hbs:15,1554336000:15,d
+node_modules/ember-simple-auth/addon/authenticators/base.js:12,1554332400:12,r
+addon/services/configuration.js:12,1554332400:12,d
