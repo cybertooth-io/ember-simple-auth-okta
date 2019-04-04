@@ -7,7 +7,7 @@ depicted below:
   'use strict';
   
   module.exports = function (environment) {
-    let ENV: {
+    let ENV = {
       // ...
       APP: {
         'ember-simple-auth-okta': {
@@ -38,7 +38,7 @@ depicted below:
       // ...
       }
       // ...
-    }
+    };
     // ...
     return ENV;
   }

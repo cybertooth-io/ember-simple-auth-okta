@@ -1,32 +1,32 @@
-import { inject as service } from '@ember/service';
-import Base from 'ember-simple-auth/authenticators/base';
+import {inject as service} from '@ember-decorators/service';
+import BaseAuthenticator from 'ember-simple-auth/authenticators/base';
 import OktaAuth from '@okta/okta-auth-js';
 
-// TODO: convert this to an actual Native Class to see if it is happy
-// export default class Okta extends Base {
-//   // ... fix all member variables & commas
-// }
-export default Base.extend({
+export default class Okta extends BaseAuthenticator {
 
-  _client: undefined,
+  /**
+   * The Okta client instantiated in the constructor
+   * @type {OktaAuth}
+   * @private
+   */
+  _client = undefined;
 
   /**
    * The `configuration` service is used to lookup the Okta configuration
    * from our Application's `config/environment.js` files `APP` section.
    * See configuration.md.
    */
-  configuration: service(),
+  @service configuration;
 
   /**
    * Instance Constructor/Initializer is responsible for creating an instance of the OktaAuth client.
    */
-  init() {
-    this._super(...arguments);
-    // TODO: round out the configuration of Okta by grabbing additonal attribute from `configuration` service
+  constructor() {
+    super(...arguments);
     this._client = new OktaAuth({
-      url: this.get('configuration').url,
+      url: this.configuration.oktaConfigHash.url,
     });
-  },
+  }
 
   /**
    * Restores the session from a session data object. __This method is invoked
@@ -52,7 +52,7 @@ export default Base.extend({
    */
   restore(/*data*/) {
     // TODO
-  },
+  }
 
   /**
    * Authenticates the session with the specified `args`. These options vary
@@ -78,8 +78,9 @@ export default Base.extend({
    * @public
    */
   authenticate(username, password) {
-    return this._client.signIn({ username, password });
-  },
+    return this._client
+      .signIn({username, password});
+  }
 
   /**
    * This method is invoked as a callback when the session is invalidated. While
@@ -104,4 +105,4 @@ export default Base.extend({
   invalidate(/*data*/) {
     return this._client.signOut();
   }
-});
+}
