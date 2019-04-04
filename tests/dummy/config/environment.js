@@ -28,7 +28,10 @@ module.exports = function (environment) {
           /**
            * This is one of Cybertooth.io's dev Okta instances.
            */
-          url: 'https://dev-308387.okta.com'
+          url: 'https://dev-308387.okta.com',
+          issuer: 'https://dev-308387.okta.com/oauth2/default',
+          clientId: '0oafawjkwfqlC9Yxc356',
+          redirectUri: 'http://localhost:4200/implicit/callback'
         }
       }
     }

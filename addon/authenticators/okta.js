@@ -23,9 +23,7 @@ export default class Okta extends BaseAuthenticator {
    */
   constructor() {
     super(...arguments);
-    this._client = new OktaAuth({
-      url: this.configuration.oktaConfigHash.url,
-    });
+    this._client = new OktaAuth(this.configuration.oktaConfigHash);
   }
 
   /**
@@ -78,8 +76,29 @@ export default class Okta extends BaseAuthenticator {
    * @public
    */
   authenticate(username, password) {
+    // TODO: Need to add groups scope to the scopes below once we figure out how to get it.
     return this._client
-      .signIn({username, password});
+      .signIn({username, password})
+      .then(response => {
+        this._sessionToken = response.sessionToken;
+        return this._client.token.getWithoutPrompt({
+          sessionToken: this._sessionToken,
+          responseType: [
+            'id_token',
+            'token'
+          ],
+          scopes: [
+            'openid',
+            'email',
+            'profile',
+            'address',
+            'phone'
+          ]
+        })
+          .then(response => {
+            return {idToken: response[0], accessToken: response[1]};
+          });
+      });
   }
 
   /**
