@@ -1,0 +1,7 @@
+[ver:1,total:1320]
+tests/dummy/app/templates/docs/configuration.md:387,1554386400:365,1554390000:22,m
+tests/dummy/config/environment.js:357,1554386400:325,1554390000:32,m
+.gtm/terminal.app:250,1554336000:210,1554390000:40,r
+app/services/configuration.js:171,1554386400:15,1554390000:156,m
+addon/authenticators/okta.js:125,1554386400:75,1554390000:50,r
+tests/dummy/app/index.html:30,1554336000:30,r
