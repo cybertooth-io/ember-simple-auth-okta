@@ -1,0 +1,12 @@
+[ver:1,total:1320]
+.gtm/terminal.app:340,1554390000:20,1554393600:320,r
+package.json:330,1554393600:90,1554397200:240,m
+app/services/configuration.js:155,1554390000:140,1554393600:15,r
+tests/dummy/app/templates/index.hbs:144,1554397200:144,m
+addon/authenticators/okta.js:135,1554393600:135,r
+tests/dummy/app/templates/not-found.hbs:72,1554397200:72,m
+tests/dummy/app/templates/docs/index.md:55,1554390000:20,1554393600:35,r
+DEPLOYMENT.md:35,1554393600:35,r
+README.md:30,1554393600:30,r
+tests/dummy/app/templates/docs.hbs:12,1554397200:12,r
+tests/dummy/app/templates/application.hbs:12,1554397200:12,r
