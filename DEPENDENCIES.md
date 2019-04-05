@@ -9,6 +9,10 @@ ember install ember-simple-auth
 
 ember install ember-auto-import
 
+ember install ember-concurrency
+
+ember install ember-concurrency-decorators
+
 yarn add @okta/okta-auth-js
 
 ```

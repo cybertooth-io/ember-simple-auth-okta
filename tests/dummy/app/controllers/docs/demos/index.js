@@ -11,12 +11,12 @@ export default class DocsDemoIndexController extends Controller {
    * The password bound to the input in the template.
    * @type {string}
    */
-  password = '';
+  password = '@Rcher12';
   /**
    * The username bound to the input in the template.
    * @type {string}
    */
-  username = '';
+  username = 'sterling.archer@isi.service';
 
   /**
    * The sign-in action invoked by the form in the template.

@@ -11,6 +11,7 @@ Router.map(function () {
     this.route('configuration');
     this.route('demos', function () {
     });
+    this.route('okta');
   });
   this.route('docs');
   this.route('not-found', { path: '/*path' });
