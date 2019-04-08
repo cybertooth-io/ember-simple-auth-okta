@@ -1,4 +1,4 @@
-import {inject as service} from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import BaseAuthenticator from 'ember-simple-auth/authenticators/base';
 import OktaAuth from '@okta/okta-auth-js';
 
@@ -24,6 +24,16 @@ export default class Okta extends BaseAuthenticator {
   constructor() {
     super(...arguments);
     this._client = new OktaAuth(this.configuration.oktaConfigHash);
+    this._client.tokenManager
+      .on('error', (error) => {
+        console.error('Token operation errored.', error);
+      })
+      .on('expired', (key, expiredToken) => {
+        console.warn('Token has expired.', 'Key=', key, 'Expired Token:', expiredToken);
+      })
+      .on('renewed', (key, newToken, oldToken) => {
+        console.warn('Token was renewed.', 'Key=', key, 'New:', newToken, 'Old:', oldToken);
+      });
   }
 
   /**
@@ -48,8 +58,10 @@ export default class Okta extends BaseAuthenticator {
    * @return {Ember.RSVP.Promise} A promise that when it resolves results in the session becoming or remaining authenticated
    * @public
    */
-  restore(/*data*/) {
-    // TODO
+  async restore(data) {
+    const accessToken = await this._client.token.renew(data.accessToken);
+    const idToken = await this._client.token.renew(data.idToken);
+    return Promise.resolve({ accessToken, idToken });
   }
 
   /**
@@ -75,30 +87,15 @@ export default class Okta extends BaseAuthenticator {
    * @return {Ember.RSVP.Promise} A promise that when it resolves results in the session becoming authenticated
    * @public
    */
-  authenticate(username, password) {
+  async authenticate(username, password) {
     // TODO: Need to add groups scope to the scopes below once we figure out how to get it.
-    return this._client
-      .signIn({username, password})
-      .then(response => {
-        this._sessionToken = response.sessionToken;
-        return this._client.token.getWithoutPrompt({
-          sessionToken: this._sessionToken,
-          responseType: [
-            'id_token',
-            'token'
-          ],
-          scopes: [
-            'openid',
-            'email',
-            'profile',
-            'address',
-            'phone'
-          ]
-        })
-          .then(response => {
-            return {idToken: response[0], accessToken: response[1]};
-          });
-      });
+    const sessionInfo = await this._client.signIn({ username, password });
+    const tokens = this._client.token.getWithoutPrompt({
+      responseType: ['id_token', 'token'],
+      sessionToken: sessionInfo.sessionToken
+    });
+    return Promise.resolve({ accessToken: tokens[1], idToken: tokens[0] });
+    // TODO: return a JSONAPI formatted error object?  I think that will make it easier on the front end
   }
 
   /**
