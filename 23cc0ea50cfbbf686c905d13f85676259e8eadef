@@ -1,0 +1,6 @@
+[ver:1,total:4320]
+addon/authenticators/okta.js:3530,1554494400:720,1554746400:2630,1554750000:180,m
+DEPLOYMENT.md:380,1554494400:210,1554746400:170,r
+tests/dummy/config/environment.js:240,1554494400:240,r
+.gtm/terminal.app:150,1554494400:150,r
+tests/dummy/app/templates/docs/configuration.md:20,1554746400:20,r
