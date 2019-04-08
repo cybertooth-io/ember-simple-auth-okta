@@ -88,7 +88,6 @@ export default class Okta extends BaseAuthenticator {
    * @public
    */
   async authenticate(username, password) {
-    // TODO: Need to add groups scope to the scopes below once we figure out how to get it.
     const sessionInfo = await this._client.signIn({ username, password });
     const tokens = this._client.token.getWithoutPrompt({
       responseType: ['id_token', 'token'],
