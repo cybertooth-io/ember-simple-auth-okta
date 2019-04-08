@@ -36,3 +36,13 @@ configuration.
 ### Assignments Settings
 
 ![Application Assignments Settings](/assets/docs/images/application-assignments.jpg)
+
+### Enabling Groups Claim For ID Token
+
+1. Start at the Okta Dashboard
+2. Under the API > Authorization Servers menu
+3. Select your authorization server (default is what I am using)
+4. Select the claims header
+5. Add a new claim to the ID token based on the picture below
+
+![Groups Claim Settings](/assets/docs/images/groups-claim-settings.png)
