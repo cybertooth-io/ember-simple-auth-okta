@@ -1,0 +1,8 @@
+[ver:1,total:1140]
+tests/dummy/app/templates/docs/okta.md:627,1554818400:615,1554822000:12,m
+.gtm/terminal.app:170,1554818400:170,r
+CONTRIBUTING.md:130,1554818400:130,r
+DEPENDENCIES.md:87,1554818400:75,1554822000:12,m
+addon/authenticators/okta.js:72,1554818400:60,1554822000:12,r
+DEPLOYMENT.md:42,1554818400:30,1554822000:12,r
+tests/dummy/app/templates/docs/configuration.md:12,1554822000:12,r
