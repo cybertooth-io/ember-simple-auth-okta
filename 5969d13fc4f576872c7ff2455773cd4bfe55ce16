@@ -1,0 +1,6 @@
+[ver:1,total:1920]
+addon/authenticators/okta.js:1754,1554818400:1754,m
+tests/dummy/app/controllers/docs/demos/index.js:74,1554818400:74,r
+.gtm/terminal.app:52,1554818400:52,r
+node_modules/ember-simple-auth/addon/authenticators/base.js:20,1554818400:20,r
+node_modules/ember-simple-auth/addon/authenticators/oauth2-password-grant.js:20,1554818400:20,r
