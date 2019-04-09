@@ -78,7 +78,7 @@ Or maybe you need the access token to pass to your API server:
 _Isn't that double-`accessToken` redundant?  Yeah, but it's the way the data is shaped and 
 how we named the keys.  Suck it up._
 
-### Will My Token Refresh Automagically?
+### Will My Token Renew Automagically?
 
 Yes!  Rather than use `okta-auth-js`'s [TokenManager](https://github.com/okta/okta-auth-js#tokenmanager) 
 for auto-refresh, we opted to use an `ember-concurrency` task to trigger a refresh of 
