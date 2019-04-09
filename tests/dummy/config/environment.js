@@ -41,7 +41,18 @@ module.exports = function (environment) {
           tokenManager: {
             storage: 'localStorage'
           }
-        }
+        },
+
+        /**
+         * The name of the header to be attached to adapter data requests.
+         */
+        headerAuthorization: 'Authorization',
+
+        /**
+         * This is the array of scopes that will be supplied when requesting the
+         * id token.
+         */
+        idTokenScopes: ['email', 'openid', 'profile']
       }
     }
   };

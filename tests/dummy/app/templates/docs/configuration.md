@@ -35,7 +35,18 @@ the `APP` section as depicted below:
             tokenManager: {
               storage: 'localStorage'
             }
-          }
+          },
+          
+          /**
+           * The name of the header to be attached to adapter data requests.
+           */
+          headerAuthorization: 'Authorization',
+          
+          /**
+           * This is the array of scopes that will be supplied when requesting the
+           * id token. 
+           */
+          idTokenScopes: ['email', 'openid']
         }
       // ...
       }
@@ -46,18 +57,16 @@ the `APP` section as depicted below:
   }
 {{/docs-snippet}}
 
-## Local vs. Session vs. Cookie
+## What's In This Configuration?
+
+`APP.ember-simple-auth-okta.config` - contains all of your endpoint details
+that your administrator can get for you from the Okta administration console.
+
+`APP.ember-simple-auth-okta.idTokenScopes` - is the array of scopes that will
+be included in the id token when it is requested.
+
+## Storage - Local vs. Session vs. Cookie
 
 What's best?  Doesn't matter.  **We're only supporting local storage
 for this addon at this time.**  Want session or cookie, fork and submit
 a PR.
-
-# Running This Demo Locally
-
-Want to see this addon in action?  Pull down this repository and `ember s` the master branch.
-
-That will run the _Dummy_ app that hosts all of this documentation and our acceptance
-test pages.
-
-If you checkout this addon's `tests/dummy/config/environment.js` you'll see the
-configuration to our development instance of Okta.
