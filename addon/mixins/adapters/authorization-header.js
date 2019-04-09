@@ -1,19 +1,18 @@
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
-import DS from 'ember-data';
+import Mixin from '@ember/object/mixin';
 
-const { Adapter } = DS;
-
-export default class AuthorizationHeaderAdapter extends Adapter.extend(DataAdapterMixin) {
-  @service configuration;
-  @service session;
-
+export default Mixin.create(DataAdapterMixin, {
   authorize(xhr) {
-    if (this.get('session.isAuthenticated')) {
+    if (this.session.isAuthenticated) {
       const accessToken = this.session.data.authenticated.accessToken.accessToken;  // => your token!
       const tokenType = this.session.data.authenticated.accessToken.tokenType;  // => Bearer
 
       xhr.setRequestHeader(this.configuration.headerAuthorization, `${tokenType} ${accessToken}`);
     }
-  }
-}
+  },
+
+  configuration: service(),
+
+  session: service()
+});
