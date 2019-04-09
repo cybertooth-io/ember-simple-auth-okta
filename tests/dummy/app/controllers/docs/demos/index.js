@@ -7,11 +7,13 @@ export default class DocsDemoIndexController extends Controller {
    * Ember Simple Auth's injected `session` service.
    */
   @service session;
+
   /**
    * The password bound to the input in the template.
    * @type {string}
    */
   password = '@Rcher12';
+
   /**
    * The username bound to the input in the template.
    * @type {string}

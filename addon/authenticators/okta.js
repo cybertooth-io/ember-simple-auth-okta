@@ -1,4 +1,7 @@
+import { getOwner } from '@ember/application';
 import { inject as service } from '@ember-decorators/service';
+import { task } from 'ember-concurrency-decorators';
+import { timeout } from 'ember-concurrency';
 import BaseAuthenticator from 'ember-simple-auth/authenticators/base';
 import OktaAuth from '@okta/okta-auth-js';
 
@@ -24,16 +27,6 @@ export default class Okta extends BaseAuthenticator {
   constructor() {
     super(...arguments);
     this._client = new OktaAuth(this.configuration.oktaConfigHash);
-    this._client.tokenManager
-      .on('error', (error) => {
-        console.error('Token operation errored.', error);
-      })
-      .on('expired', (key, expiredToken) => {
-        console.warn('Token has expired.', 'Key=', key, 'Expired Token:', expiredToken);
-      })
-      .on('renewed', (key, newToken, oldToken) => {
-        console.warn('Token was renewed.', 'Key=', key, 'New:', newToken, 'Old:', oldToken);
-      });
   }
 
   /**
@@ -58,10 +51,12 @@ export default class Okta extends BaseAuthenticator {
    * @return {Ember.RSVP.Promise} A promise that when it resolves results in the session becoming or remaining authenticated
    * @public
    */
-  async restore(data) {
-    const accessToken = await this._client.token.renew(data.accessToken);
-    const idToken = await this._client.token.renew(data.idToken);
-    return Promise.resolve({ accessToken, idToken });
+  async restore({ accessToken, idToken }) {
+    const newAccessToken = await this._client.token.renew(accessToken);
+    const newIdToken = await this._client.token.renew(idToken);
+    this._renewTokensBeforeExpiry.perform(newAccessToken.expiresAt);
+
+    return Promise.resolve({ accessToken: newAccessToken, idToken: newIdToken });
   }
 
   /**
@@ -89,11 +84,12 @@ export default class Okta extends BaseAuthenticator {
    */
   async authenticate(username, password) {
     const sessionInfo = await this._client.signIn({ username, password });
-    const tokens = await this._client.token.getWithoutPrompt({
+    const [idToken, accessToken] = await this._client.token.getWithoutPrompt({
       responseType: ['id_token', 'token'],
       sessionToken: sessionInfo.sessionToken
     });
-    return Promise.resolve({ accessToken: tokens[1], idToken: tokens[0] });
+    this._renewTokensBeforeExpiry.perform(accessToken.expiresAt);
+    return Promise.resolve({ accessToken, idToken });
     // TODO: return a JSONAPI formatted error object?  I think that will make it easier on the front end
   }
 
@@ -119,5 +115,22 @@ export default class Okta extends BaseAuthenticator {
    */
   invalidate(/*data*/) {
     return this._client.signOut();
+  }
+
+  /**
+   * TODO: https://github.com/cybertooth-io/ember-simple-auth-okta/issues/9
+   * @param exp
+   * @return {IterableIterator<Ember.RSVP.Promise|void|*>}
+   * @private
+   */
+  @task
+  _renewTokensBeforeExpiry = function* (exp) {
+    const wait = exp * 1000 - Date.now();
+    console.warn('Scheduled authentication token refresh will occur at ', new Date(exp * 1000));
+
+    yield timeout(wait);
+
+    console.warn('Commencing refresh of the authentication tokens at ', new Date());
+    return getOwner(this).lookup('session:main').restore();   // TODO: this.restore() won't work...ideally use `this.trigger('sessionDataUpdated')` but the evented approach is not firing!
   }
 }
