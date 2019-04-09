@@ -108,7 +108,6 @@ Ember Simple Auth correctly, will kick your user to the login page.
   </ol>
 </div>
 
-
 ## Sign Out
 
 Signing out follows Ember Simple Auth's `invalidate` procedure:
