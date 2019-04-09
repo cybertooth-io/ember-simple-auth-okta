@@ -1,0 +1,13 @@
+[ver:1,total:8100]
+addon/authenticators/okta.js:5802,1554750000:200,1554753600:890,1554757200:540,1554760800:1230,1554764400:2261,1554768000:519,1554814800:82,1554818400:80,m
+tests/dummy/app/controllers/docs/demos/index.js:764,1554764400:704,1554818400:60,m
+node_modules/ember-simple-auth/addon/authenticators/base.js:376,1554753600:100,1554764400:242,1554768000:27,1554814800:7,r
+node_modules/ember-simple-auth/addon/authenticators/oauth2-password-grant.js:364,1554753600:220,1554757200:60,1554760800:30,1554764400:20,1554768000:27,1554814800:7,r
+.gtm/terminal.app:260,1554750000:220,1554818400:40,r
+node_modules/ember-simple-auth/addon/authenticators/oauth2-implicit-grant.js:179,1554753600:140,1554764400:20,1554768000:12,1554814800:7,r
+node_modules/ember-simple-auth/addon/services/session.js:179,1554764400:164,1554768000:15,r
+tests/dummy/app/templates/docs/demos/index.hbs:117,1554764400:117,r
+tests/dummy/app/templates/docs/configuration.md:27,1554753600:15,1554764400:12,r
+DEPLOYMENT.md:15,1554753600:15,r
+tests/dummy/config/environment.js:10,1554814800:10,r
+tests/dummy/app/templates/docs/okta.md:7,1554814800:7,r
