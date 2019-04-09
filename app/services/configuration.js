@@ -12,6 +12,9 @@ export default class ConfigurationService extends Service {
     this._oktaConfigHash = getWithDefault(
       config, 'APP.ember-simple-auth-okta.config', { url: 'https://dev-000000.okta.com' }
     );
+    this._headerAuthorization = getWithDefault(
+      config, 'APP.ember-simple-auth-okta.headerAuthorization', 'Authorization'
+    );
     this._idTokenScopes = getWithDefault(
       config, 'APP.ember-simple-auth-okta.idTokenScopes', ['email', 'openid']
     );
@@ -25,15 +28,11 @@ export default class ConfigurationService extends Service {
     return this._oktaConfigHash;
   }
 
-  set oktaConfigHash(value) {
-    this._oktaConfigHash = value;
+  get headerAuthorization() {
+    return this._headerAuthorization;
   }
 
   get idTokenScopes() {
     return this._idTokenScopes;
-  }
-
-  set idTokenScopes(value) {
-    this._idTokenScopes = value;
   }
 }
