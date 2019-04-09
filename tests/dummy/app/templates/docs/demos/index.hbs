@@ -52,3 +52,19 @@
     </a>
   </div>
 </form>
+
+{{#if session.isAuthenticated}}
+  <div class="docs-bg-white docs-shadow-md docs-rounded docs-px-8 docs-pt-6 docs-pb-8 docs-mb-4">
+    <div class="docs-font-bold docs-text-xl docs-mb-2">User Details</div>
+    <div class="docs-font-bold"><code>session.data.authenticated.idToken.claims.email</code></div>
+    <div class="docs-mb-2">=> {{session.data.authenticated.idToken.claims.email}}</div>
+    <div class="docs-font-bold"><code>session.data.authenticated.idToken.claims.name</code></div>
+    <div class="docs-mb-2">=> {{session.data.authenticated.idToken.claims.name}}</div>
+    <div class="docs-font-bold"><code>session.data.authenticated.idToken.claims.given_name</code></div>
+    <div class="docs-mb-2">=> {{session.data.authenticated.idToken.claims.given_name}}</div>
+    <div class="docs-font-bold"><code>session.data.authenticated.idToken.claims.family_name</code></div>
+    <div class="docs-mb-2">=> {{session.data.authenticated.idToken.claims.family_name}}</div>
+    <div class="docs-font-bold"><code>session.data.authenticated.idToken.claims.groups</code></div>
+    <div class="docs-mb-2">=> {{session.data.authenticated.idToken.claims.groups}}</div>
+  </div>
+{{/if}}

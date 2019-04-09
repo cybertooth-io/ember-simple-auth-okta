@@ -54,6 +54,8 @@ export default class Okta extends BaseAuthenticator {
   async restore({ accessToken, idToken }) {
     const newAccessToken = await this._client.token.renew(accessToken);
     const newIdToken = await this._client.token.renew(idToken);
+
+    this._renewTokensBeforeExpiry.cancelAll();
     this._renewTokensBeforeExpiry.perform(newAccessToken.expiresAt);
 
     return Promise.resolve({ accessToken: newAccessToken, idToken: newIdToken });
@@ -84,11 +86,19 @@ export default class Okta extends BaseAuthenticator {
    */
   async authenticate(username, password) {
     const sessionInfo = await this._client.signIn({ username, password });
-    const [idToken, accessToken] = await this._client.token.getWithoutPrompt({
-      responseType: ['id_token', 'token'],
+    const [accessToken] = await this._client.token.getWithoutPrompt({
+      responseType: ['token'],
       sessionToken: sessionInfo.sessionToken
     });
+    const [idToken] = await this._client.token.getWithoutPrompt({
+      responseType: ['id_token'],
+      scopes: this.configuration.idTokenScopes,
+      sessionToken: sessionInfo.sessionToken
+    });
+
+    this._renewTokensBeforeExpiry.cancelAll();
     this._renewTokensBeforeExpiry.perform(accessToken.expiresAt);
+
     return Promise.resolve({ accessToken, idToken });
     // TODO: return a JSONAPI formatted error object?  I think that will make it easier on the front end
   }
@@ -114,6 +124,7 @@ export default class Okta extends BaseAuthenticator {
    * @public
    */
   invalidate(/*data*/) {
+    this._renewTokensBeforeExpiry.cancelAll();
     return this._client.signOut();
   }
 

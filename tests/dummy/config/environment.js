@@ -41,7 +41,13 @@ module.exports = function (environment) {
           tokenManager: {
             storage: 'localStorage'
           }
-        }
+        },
+
+        /**
+         * This is the array of scopes that will be supplied when requesting the
+         * id token.
+         */
+        idTokenScopes: ['email', 'openid', 'profile']
       }
     }
   };

@@ -37,12 +37,19 @@ configuration.
 
 <img alt="Application Assignments Settings" src="{{root-url "/assets/docs/images/application-assignments.jpg"}}"/>
 
-### Enabling Groups Claim For ID Token
+### Enabling The Groups Claim
 
-1. Start at the Okta Dashboard
-2. Under the API > Authorization Servers menu
-3. Select your authorization server (default is what I am using)
-4. Select the claims header
-5. Add a new claim to the ID token based on the picture below
+For authorization purposes, your client and server may want the
+user's group assignments.  To ensure that groups are included in
+your payloads you must configure it in Okta's administrator web console:
 
-<img alt="Groups Claim Settings" src="{{root-url "/assets/docs/images/groups-claim-settings.png"}}"/>
+1. Sign into your Okta Dashboard
+1. Choose the `API > Authorization Servers` menu option
+1. Choose the authorization server you wish to configure; in our
+simple developer case it is named `default`
+1. Choose the `Claims` tab
+1. Press the `Add Claim` button to configure a new _groups_
+claim for the access token:
+<img alt="Groups Claim Settings" src="{{root-url "/assets/docs/images/api-authorization-server-claims-access-token-groups.jpg"}}"/>
+1. Press the `Add Claim` button again to configure the _groups_ claim on the id token:
+<img alt="Groups Claim Settings" src="{{root-url "/assets/docs/images/api-authorization-server-claims-id-token-groups.jpg"}}"/>
