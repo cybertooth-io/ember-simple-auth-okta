@@ -89,7 +89,7 @@ export default class Okta extends BaseAuthenticator {
    */
   async authenticate(username, password) {
     const sessionInfo = await this._client.signIn({ username, password });
-    const tokens = this._client.token.getWithoutPrompt({
+    const tokens = await this._client.token.getWithoutPrompt({
       responseType: ['id_token', 'token'],
       sessionToken: sessionInfo.sessionToken
     });
