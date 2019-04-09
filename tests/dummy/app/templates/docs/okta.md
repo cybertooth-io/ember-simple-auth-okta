@@ -27,15 +27,15 @@ Most of your configuration information lives in this tab.
 * `redirectUri` should be one of the redirect URI's you've added to the application
 configuration.
 
-![Application General Settings](/assets/docs/images/application-general.jpg)
+<img alt="Application General Settings" src="{{root-url "/assets/docs/images/application-general.jpg"}}"/>
 
 ### Sign On Settings
 
-![Application Sign On Settings](/assets/docs/images/application-sign-on.jpg)
+<img alt="Application Sign On Settings" src="{{root-url "/assets/docs/images/application-sign-on.jpg"}}"/>
 
 ### Assignments Settings
 
-![Application Assignments Settings](/assets/docs/images/application-assignments.jpg)
+<img alt="Application Assignments Settings" src="{{root-url "/assets/docs/images/application-assignments.jpg"}}"/>
 
 ### Enabling Groups Claim For ID Token
 
@@ -45,4 +45,4 @@ configuration.
 4. Select the claims header
 5. Add a new claim to the ID token based on the picture below
 
-![Groups Claim Settings](/assets/docs/images/groups-claim-settings.png)
+<img alt="Groups Claim Settings" src="{{root-url "/assets/docs/images/groups-claim-settings.png"}}"/>
