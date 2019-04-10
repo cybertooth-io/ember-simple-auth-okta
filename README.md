@@ -3,6 +3,7 @@ ember-simple-auth-okta
 
 Ember Simple Auth implementation wrapping `okta-auth-js`.
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/a5acd1c21cc1fddb227b/maintainability)](https://codeclimate.com/github/cybertooth-io/ember-simple-auth-okta/maintainability)
 
 Compatibility
 ------------------------------------------------------------------------------
