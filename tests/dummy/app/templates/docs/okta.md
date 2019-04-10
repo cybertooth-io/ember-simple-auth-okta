@@ -13,7 +13,7 @@ it live like Bill O'Reilly.
 
 ## Add Some Users
 
-![Okta User Management](/assets/docs/images/users.jpg)
+<img alt="Okta User Management" src="{{root-url "/assets/docs/images/users.jpg"}}"/>
 
 ## Create Your Application
 
