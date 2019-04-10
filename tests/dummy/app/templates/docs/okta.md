@@ -53,3 +53,18 @@ claim for the access token:
 <img alt="Groups Claim Settings" src="{{root-url "/assets/docs/images/api-authorization-server-claims-access-token-groups.jpg"}}"/>
 1. Press the `Add Claim` button again to configure the _groups_ claim on the id token:
 <img alt="Groups Claim Settings" src="{{root-url "/assets/docs/images/api-authorization-server-claims-id-token-groups.jpg"}}"/>
+
+
+### CORS Configuration
+
+This demo is deployed and delivered through GitHub pages.  Cool right?!  As such, we
+must configure Okta's trusted origins to respect our GitHub pages demo site:
+`https://cybertooth-io.github.io/`
+
+From the Okta administration console:
+
+1. Sign into your Okta Dashboard
+1. Choose the `API > Trust Origins` menu option
+1. Press the `Add Origin` button to configure the new origin
+
+<img alt="Trust Origins" src="{{root-url "/assets/docs/images/api-trusted-origins.jpg"}}"/>
