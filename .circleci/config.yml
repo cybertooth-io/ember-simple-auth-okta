@@ -82,7 +82,7 @@ jobs:
       - run:
           name: Ember Try
           command: ./node_modules/.bin/ember try:one ember-canary --skip-cleanup
-  test_lts_3_14:
+  test_lts_3_4:
     docker:
       - image: circleci/node:8.14-browsers
     steps:
