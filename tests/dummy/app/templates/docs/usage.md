@@ -92,7 +92,7 @@ request fails, then Ember Simple Auth will clear your session, which if you're u
 Ember Simple Auth correctly, will kick your user to the login page.   
 
 <div class="docs-bg-grey-lightest docs-border-l-4 docs-border-grey docs-text-grey-darker docs-p-4" role="alert">
-  <p class="docs-font-bold"><code>okta-auth-js</code> Token Manager Was Clunky</p>
+  <p class="docs-font-bold"><code>okta-auth-js</code> Token Manager Has Challenges</p>
   <ol>
     <li>
       When forcibly asked to renew a token directly from the token manager it
@@ -112,7 +112,7 @@ Ember Simple Auth correctly, will kick your user to the login page.
 
 Signing out follows Ember Simple Auth's `invalidate` procedure:
 
-{{#docs-snippet name="sign-in" title="app/controllers/sign-in.js"}}
+{{#docs-snippet name="sign-out" title="app/controllers/sign-in.js"}}
   @service session; // the injected session
   
   // here's the action bound to your sign out button/form

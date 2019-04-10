@@ -80,7 +80,9 @@ module.exports = function (environment) {
   if (environment === 'production') {
     // Allow ember-cli-addon-docs to update the rootURL in compiled assets
     ENV.rootURL = 'ADDON_DOCS_ROOT_URL';
-    // here you can enable a production-specific feature
+
+    // so that our GitHub demo will authenticate, we have to override the redirectUri
+    ENV.APP['ember-simple-auth-okta'].config.redirectUri = 'https://cybertooth-io.github.io/implicit/callback';
   }
 
   return ENV;

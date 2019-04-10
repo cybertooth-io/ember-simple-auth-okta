@@ -62,6 +62,11 @@ the `APP` section as depicted below:
 `APP.ember-simple-auth-okta.config` - contains all of your endpoint details
 that your administrator can get for you from the Okta administration console.
 
+`APP.ember-simple-auth-okta.headerAuthorization` - the name of the authorization
+header that will be set in requests to the Ember Data endpoint.  This is typically 
+named `Authorization` and will look like this when sent to your API end point:
+`Authorization: "Bearer sOmEtOkEn"`. 
+
 `APP.ember-simple-auth-okta.idTokenScopes` - is the array of scopes that will
 be included in the id token when it is requested.
 
