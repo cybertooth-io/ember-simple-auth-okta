@@ -93,6 +93,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "https://cybertooth-io.github.io/ember-data-autocomplete-js/docs/demos"
+    "demoURL": "https://cybertooth-io.github.io/ember-simple-auth-okta/"
   }
 }
