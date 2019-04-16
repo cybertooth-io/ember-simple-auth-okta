@@ -13,6 +13,7 @@ module.exports = {
       packages: [
         { name: 'ember-auto-import' },
         { name: 'ember-concurrency' },
+        { name: 'ember-concurrency-decorators' },
         { name: 'ember-simple-auth' }
       ]
     }).then(() => {
