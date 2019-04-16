@@ -1,7 +1,6 @@
 import { getOwner } from '@ember/application';
-import { inject as service } from '@ember-decorators/service';
-import { task } from 'ember-concurrency-decorators';
-import { timeout } from 'ember-concurrency';
+import { inject as service } from '@ember/service';
+import { task, timeout } from 'ember-concurrency';
 import BaseAuthenticator from 'ember-simple-auth/authenticators/base';
 import OktaAuth from '@okta/okta-auth-js';
 
@@ -20,6 +19,21 @@ export default class Okta extends BaseAuthenticator {
    * See configuration.md.
    */
   @service configuration;
+  /**
+   * TODO: https://github.com/cybertooth-io/ember-simple-auth-okta/issues/9
+   * @param exp
+   * @return {IterableIterator<Ember.RSVP.Promise|void|*>}
+   * @private
+   */
+  @task(function* (exp) {
+    const wait = exp * 1000 - Date.now();
+    console.warn('Scheduled authentication token refresh will occur at ', new Date(exp * 1000));
+
+    yield timeout(wait);
+
+    console.warn('Commencing refresh of the authentication tokens at ', new Date());
+    return getOwner(this).lookup('session:main').restore();   // TODO: this.restore() won't work...ideally use `this.trigger('sessionDataUpdated')` but the evented approach is not firing!
+  }) _renewTokensBeforeExpiry;
 
   /**
    * Instance Constructor/Initializer is responsible for creating an instance of the OktaAuth client.
@@ -126,22 +140,5 @@ export default class Okta extends BaseAuthenticator {
   invalidate(/*data*/) {
     this._renewTokensBeforeExpiry.cancelAll();
     return this._client.signOut();
-  }
-
-  /**
-   * TODO: https://github.com/cybertooth-io/ember-simple-auth-okta/issues/9
-   * @param exp
-   * @return {IterableIterator<Ember.RSVP.Promise|void|*>}
-   * @private
-   */
-  @task
-  _renewTokensBeforeExpiry = function* (exp) {
-    const wait = exp * 1000 - Date.now();
-    console.warn('Scheduled authentication token refresh will occur at ', new Date(exp * 1000));
-
-    yield timeout(wait);
-
-    console.warn('Commencing refresh of the authentication tokens at ', new Date());
-    return getOwner(this).lookup('session:main').restore();   // TODO: this.restore() won't work...ideally use `this.trigger('sessionDataUpdated')` but the evented approach is not firing!
   }
 }
