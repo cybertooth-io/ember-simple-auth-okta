@@ -2,6 +2,15 @@ import config from '../config/environment';
 import Service from '@ember/service';
 import { getWithDefault } from '@ember/object';
 
+/**
+ * A singleton service configuration that will pull in the `config/environment.js` properties and
+ * settings that are used to authenticate with the Okta services.
+ *
+ * @class Configuration
+ * @module ember-simple-auth-okta/services/configuration
+ * @extends Service
+ * @public
+ */
 export default class ConfigurationService extends Service {
 
   /** Constructor

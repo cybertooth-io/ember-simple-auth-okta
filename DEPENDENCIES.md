@@ -3,7 +3,7 @@
 ```bash
 ember install ember-auto-import
 
-ember install ember-cli-addon-docs
+ember install ember-cli-addon-docs  # using esdoc
 
 ember install ember-concurrency
 
