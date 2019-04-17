@@ -1,0 +1,14 @@
+{
+  "v0.0.1-alpha.2": {
+    "path": "versions/v0.0.1-alpha.2",
+    "name": "v0.0.1-alpha.2",
+    "sha": "ff97929202648b749bb5dc4db2b3e2012c3e8fad",
+    "tag": "v0.0.1-alpha.2"
+  },
+  "-latest": {
+    "path": "",
+    "name": "Latest",
+    "sha": "ff97929202648b749bb5dc4db2b3e2012c3e8fad",
+    "tag": "v0.0.1-alpha.2"
+  }
+}
