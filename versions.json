@@ -8,7 +8,13 @@
   "-latest": {
     "path": "",
     "name": "Latest",
-    "sha": "ff97929202648b749bb5dc4db2b3e2012c3e8fad",
-    "tag": "v0.0.1-alpha.2"
+    "sha": "196c11c27e64cf7b40d89ff786234bcda5bbaef9",
+    "tag": null
+  },
+  "remove-some-dependencies": {
+    "path": "versions/remove-some-dependencies",
+    "name": "remove-some-dependencies",
+    "sha": "196c11c27e64cf7b40d89ff786234bcda5bbaef9",
+    "tag": null
   }
 }
