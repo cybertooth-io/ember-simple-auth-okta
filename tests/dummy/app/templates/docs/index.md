@@ -14,6 +14,12 @@
 is used to pleasantly `import OktaAuth from '@okta/okta-auth-js';`
 1. The latest version of `ember-concurrency` is installed because it is
 used to manage the timer that renews tokens obtained from Okta.
+1. The latest version of `ember-decorators` is required because all of this module
+has been authored with native classes.
+1. The latest version of `ember-decorators-polyfill` is installed to back-port the
+default decorators to Ember-2.18.  Once Ember-3.10 is released, this decorator
+polyfill will no longer be required.
+[Issue In GitHub](https://github.com/cybertooth-io/ember-simple-auth-okta/issues/23).
 1. `okta-auth-js` npm package is installed and we import the 
 `import OktaAuth from '@okta/okta-auth-js';` in order to create the Okta Client
 that will be used to authenticate.

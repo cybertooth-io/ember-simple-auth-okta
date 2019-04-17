@@ -1,10 +1,22 @@
 import { getOwner } from '@ember/application';
-import { inject as service } from '@ember-decorators/service';
-import { task } from 'ember-concurrency-decorators';
-import { timeout } from 'ember-concurrency';
+import { inject as service } from '@ember/service';
+import { task, timeout } from 'ember-concurrency';
 import BaseAuthenticator from 'ember-simple-auth/authenticators/base';
 import OktaAuth from '@okta/okta-auth-js';
 
+/**
+ * An __Ember Simple Auth__ `Authenticator` implementation that wraps Okta's
+ * `okta-auth-js` module to authenticate with their identity servers.  Authentication
+ * will persist tokens in local storage facilitated through Ember Simple Auth.  Tokens
+ * will be refreshed by an __Ember Concurrency__ task that waits until expiry time
+ * before triggering the refresh.
+ *
+ * @class Okta
+ * @module ember-simple-auth-okta/authenticators/okta
+ * @extends BaseAuthenticator
+ * @uses Ember.Evented
+ * @public
+ */
 export default class Okta extends BaseAuthenticator {
 
   /**
@@ -18,8 +30,26 @@ export default class Okta extends BaseAuthenticator {
    * The `configuration` service is used to lookup the Okta configuration
    * from our Application's `config/environment.js` files `APP` section.
    * See configuration.md.
+   * @type {Configuration}
    */
   @service configuration;
+
+  /**
+   * A task that will wait until expiry before triggering a full restore of the session.
+   * @param exp the expiry in seconds (unix time)
+   * @type {Task}
+   * @private
+   * TODO: Refactor @task syntax: https://github.com/cybertooth-io/ember-simple-auth-okta/issues/9
+   */
+  @task(function* (exp) {
+    const wait = exp * 1000 - Date.now();
+    console.warn('Scheduled authentication token refresh will occur at ', new Date(exp * 1000));
+
+    yield timeout(wait);
+
+    console.warn('Commencing refresh of the authentication tokens at ', new Date());
+    return getOwner(this).lookup('session:main').restore();   // TODO: this.restore() won't work...ideally use `this.trigger('sessionDataUpdated')` but the evented approach is not firing!
+  }) _renewTokensBeforeExpiry;
 
   /**
    * Instance Constructor/Initializer is responsible for creating an instance of the OktaAuth client.
@@ -47,8 +77,10 @@ export default class Okta extends BaseAuthenticator {
    * The `BaseAuthenticator`'s implementation always returns a rejecting
    * promise. __This method must be overridden in subclasses.__
    *
-   * @param {Object} data The data to restore the session from
-   * @return {Ember.RSVP.Promise} A promise that when it resolves results in the session becoming or remaining authenticated
+   * @param {Object} data The data from ember-simple-auth storage that was collected during
+   * authenticate (or the last restore).  In our implementations case we'll always get the
+   * accessToken and then the idToken.  Each will be passed to the Okta Client to `renew`</code>`.
+   * @return {Promise<{idToken: {Object}, accessToken: {Object}}>}
    * @public
    */
   async restore({ accessToken, idToken }) {
@@ -79,9 +111,9 @@ export default class Okta extends BaseAuthenticator {
    * and thus never authenticates the session. __This method must be overridden
    * in subclasses__.
    *
-   * @param username
-   * @param password
-   * @return {Ember.RSVP.Promise} A promise that when it resolves results in the session becoming authenticated
+   * @param {String} username the user name (typically an email address)
+   * @param {String} password the user's password
+   * @return {Promise<{idToken: {Object}, accessToken: {Object}}>}
    * @public
    */
   async authenticate(username, password) {
@@ -118,30 +150,14 @@ export default class Okta extends BaseAuthenticator {
    * to be overridden in custom authenticators__ if no actions need to be
    * performed on session invalidation.
    *
-   * @param {Object} data The current authenticated session data
-   * @param {Array} ...args additional arguments as required by the authenticator
+   * @param {Object} data The data from ember-simple-auth storage that was collected during
+   * authenticate (or the last restore).  In our implementations case we'll always be passed a hash
+   * with the `accessToken` and the `idToken`.  This parameter is ignored for this Okta implementation.
    * @return {Ember.RSVP.Promise} A promise that when it resolves results in the session being invalidated
    * @public
    */
   invalidate(/*data*/) {
     this._renewTokensBeforeExpiry.cancelAll();
     return this._client.signOut();
-  }
-
-  /**
-   * TODO: https://github.com/cybertooth-io/ember-simple-auth-okta/issues/9
-   * @param exp
-   * @return {IterableIterator<Ember.RSVP.Promise|void|*>}
-   * @private
-   */
-  @task
-  _renewTokensBeforeExpiry = function* (exp) {
-    const wait = exp * 1000 - Date.now();
-    console.warn('Scheduled authentication token refresh will occur at ', new Date(exp * 1000));
-
-    yield timeout(wait);
-
-    console.warn('Commencing refresh of the authentication tokens at ', new Date());
-    return getOwner(this).lookup('session:main').restore();   // TODO: this.restore() won't work...ideally use `this.trigger('sessionDataUpdated')` but the evented approach is not firing!
   }
 }
