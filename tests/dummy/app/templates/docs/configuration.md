@@ -18,13 +18,13 @@ the `APP` section as depicted below:
            */
           config: {
             // Url to your Okta instance
-            url: 'https://dev-000000.okta.com'
+            url: 'https://dev-000000.okta.com',
             issuer: 'https://dev-000000.okta.com/oauth2/default',
             clientId: 'aBcDeFgHiJkLmNoPqRsT',
             /**
              * This should actually be your Ember App's URL.
              */
-            redirectUri: 'https://localhost:4200/implicit/callback',
+            redirectUri: 'http://localhost:4200/implicit/callback',
           
             /**
              * Ember Simple Auth does best with local storage.
