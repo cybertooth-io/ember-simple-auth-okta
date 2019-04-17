@@ -19,10 +19,11 @@ export default class Okta extends BaseAuthenticator {
    * See configuration.md.
    */
   @service configuration;
+
   /**
+   * A task that will wait until expiry before trigger a full restore of the session.
    * TODO: https://github.com/cybertooth-io/ember-simple-auth-okta/issues/9
-   * @param exp
-   * @return {IterableIterator<Ember.RSVP.Promise|void|*>}
+   * @param exp the expiry in seconds (unix time)
    * @private
    */
   @task(function* (exp) {
