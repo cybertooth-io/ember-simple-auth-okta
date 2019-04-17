@@ -164,7 +164,11 @@ workflows:
   version: 2
   ember_try:
     jobs:
-      - yarn_and_cache
+      - yarn_and_cache:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - test_default:
           requires:
             - yarn_and_cache
