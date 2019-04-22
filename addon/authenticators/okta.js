@@ -25,7 +25,6 @@ export default class Okta extends BaseAuthenticator {
    * @private
    */
   _client = undefined;
-
   /**
    * The `configuration` service is used to lookup the Okta configuration
    * from our Application's `config/environment.js` files `APP` section.
@@ -33,7 +32,6 @@ export default class Okta extends BaseAuthenticator {
    * @type {Configuration}
    */
   @service configuration;
-
   /**
    * A task that will wait until expiry before triggering a full restore of the session.
    * @param exp the expiry in seconds (unix time)
@@ -57,6 +55,16 @@ export default class Okta extends BaseAuthenticator {
   constructor() {
     super(...arguments);
     this._client = new OktaAuth(this.configuration.oktaConfigHash);
+  }
+
+  /**
+   *
+   * @param expiresAtInSeconds
+   * @return {boolean}
+   * @private
+   */
+  static _isExpired(expiresAtInSeconds) {
+    return Date.now() >= (expiresAtInSeconds * 1000);
   }
 
   /**
@@ -84,17 +92,17 @@ export default class Okta extends BaseAuthenticator {
    * @public
    */
   async restore({ accessToken, idToken }) {
-    if (Date.now() > (accessToken.expiresAt * 1000)) {
-      const newAccessToken = await this._client.token.renew(accessToken);
-      const newIdToken = await this._client.token.renew(idToken);
-
-      this._renewTokensBeforeExpiry.cancelAll();
-      this._renewTokensBeforeExpiry.perform(newAccessToken.expiresAt);
-
-      return Promise.resolve({ accessToken: newAccessToken, idToken: newIdToken });
-    } else {
-      return Promise.resolve({ accessToken, idToken });
+    const data = { accessToken, idToken };
+    if (Okta._isExpired(data.accessToken.expiresAt)) {
+      console.warn('Attempting to renew tokens because the stored access token appears to have expired.');
+      data.accessToken = await this._client.token.renew(accessToken);
+      data.idToken = await this._client.token.renew(idToken);
     }
+
+    this._renewTokensBeforeExpiry.cancelAll();
+    this._renewTokensBeforeExpiry.perform(data.accessToken.expiresAt);
+
+    return Promise.resolve(data);
   }
 
   /**
