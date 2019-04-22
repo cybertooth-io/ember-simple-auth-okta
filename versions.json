@@ -22,5 +22,11 @@
     "name": "v0.0.1-alpha.3",
     "sha": "99ac835e7037d7360f6c4d5d9c87a435b0f7adf6",
     "tag": "v0.0.1-alpha.3"
+  },
+  "master": {
+    "path": "versions/master",
+    "name": "master",
+    "sha": "cd732383c5899108f03f74c953624dbb0828de5c",
+    "tag": null
   }
 }
