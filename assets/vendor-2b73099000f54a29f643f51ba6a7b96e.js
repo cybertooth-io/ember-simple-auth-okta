@@ -7213,18 +7213,20 @@ case 4:return console.warn("Commencing refresh of the authentication tokens at "
 case 6:case"end":return e.stop()}},e,this)})),a=g((o=function(e){function t(){var e,r,i
 return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),r=this,(e=!(i=p(t).apply(this,arguments))||"object"!==u(i)&&"function"!=typeof i?m(r):i)._client=void 0,f(e,"configuration",a,m(e)),f(e,"_renewTokensBeforeExpiry",s,m(e)),e._client=new n.default(e.configuration.oktaConfigHash),e}var i,o,c
 return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
-e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&v(e,t)}(t,r.default),i=t,(o=[{key:"restore",value:function(){var e=d(regeneratorRuntime.mark(function e(t){var r,n,i,o
-return regeneratorRuntime.wrap(function(e){for(;;)switch(e.prev=e.next){case 0:return r=t.accessToken,n=t.idToken,e.next=3,this._client.token.renew(r)
-case 3:return i=e.sent,e.next=6,this._client.token.renew(n)
-case 6:return o=e.sent,this._renewTokensBeforeExpiry.cancelAll(),this._renewTokensBeforeExpiry.perform(i.expiresAt),e.abrupt("return",Promise.resolve({accessToken:i,idToken:o}))
-case 10:case"end":return e.stop()}},e,this)}))
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&v(e,t)}(t,r.default),i=t,o=[{key:"restore",value:function(){var e=d(regeneratorRuntime.mark(function e(r){var n,i,o
+return regeneratorRuntime.wrap(function(e){for(;;)switch(e.prev=e.next){case 0:if(n=r.accessToken,i=r.idToken,o={accessToken:n,idToken:i},!t._isExpired(o.accessToken.expiresAt)){e.next=10
+break}return console.warn("Attempting to renew tokens because the stored access token appears to have expired."),e.next=6,this._client.token.renew(n)
+case 6:return o.accessToken=e.sent,e.next=9,this._client.token.renew(i)
+case 9:o.idToken=e.sent
+case 10:return this._renewTokensBeforeExpiry.cancelAll(),this._renewTokensBeforeExpiry.perform(o.accessToken.expiresAt),e.abrupt("return",Promise.resolve(o))
+case 13:case"end":return e.stop()}},e,this)}))
 return function(t){return e.apply(this,arguments)}}()},{key:"authenticate",value:function(){var e=d(regeneratorRuntime.mark(function e(t,r){var n,i,o,a,s,u,c
 return regeneratorRuntime.wrap(function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,this._client.signIn({username:t,password:r})
 case 2:return n=e.sent,e.next=5,this._client.token.getWithoutPrompt({responseType:["token"],sessionToken:n.sessionToken})
 case 5:return i=e.sent,o=l(i,1),a=o[0],e.next=10,this._client.token.getWithoutPrompt({responseType:["id_token"],scopes:this.configuration.idTokenScopes,sessionToken:n.sessionToken})
 case 10:return s=e.sent,u=l(s,1),c=u[0],this._renewTokensBeforeExpiry.cancelAll(),this._renewTokensBeforeExpiry.perform(a.expiresAt),e.abrupt("return",Promise.resolve({accessToken:a,idToken:c}))
 case 16:case"end":return e.stop()}},e,this)}))
-return function(t,r){return e.apply(this,arguments)}}()},{key:"invalidate",value:function(){return this._renewTokensBeforeExpiry.cancelAll(),this._client.signOut()}}])&&h(i.prototype,o),c&&h(i,c),t}()).prototype,"configuration",[Ember.inject.service],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),s=g(o.prototype,"_renewTokensBeforeExpiry",[i],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),o)
+return function(t,r){return e.apply(this,arguments)}}()},{key:"invalidate",value:function(){return this._renewTokensBeforeExpiry.cancelAll(),this._client.signOut()}}],c=[{key:"_isExpired",value:function(e){return Date.now()>=1e3*e}}],o&&h(i.prototype,o),c&&h(i,c),t}()).prototype,"configuration",[Ember.inject.service],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),s=g(o.prototype,"_renewTokensBeforeExpiry",[i],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),o)
 e.default=y}),define("ember-simple-auth-okta/mixins/adapters/authorization-header",["exports","ember-simple-auth/mixins/data-adapter-mixin"],function(e,t){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var r=Ember.Mixin.create(t.default,{authorize:function(e){if(this.session.isAuthenticated){var t=this.session.data.authenticated.accessToken.accessToken,r=this.session.data.authenticated.accessToken.tokenType

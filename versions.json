@@ -8,7 +8,7 @@
   "-latest": {
     "path": "",
     "name": "Latest",
-    "sha": "196c11c27e64cf7b40d89ff786234bcda5bbaef9",
+    "sha": "cd732383c5899108f03f74c953624dbb0828de5c",
     "tag": null
   },
   "remove-some-dependencies": {

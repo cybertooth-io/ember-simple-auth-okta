@@ -1,5 +1,0 @@
-version: 2
-jobs:
-  nothing:
-workflows:
-  version: 2
