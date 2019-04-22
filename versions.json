@@ -16,5 +16,11 @@
     "name": "remove-some-dependencies",
     "sha": "196c11c27e64cf7b40d89ff786234bcda5bbaef9",
     "tag": null
+  },
+  "v0.0.1-alpha.3": {
+    "path": "versions/v0.0.1-alpha.3",
+    "name": "v0.0.1-alpha.3",
+    "sha": "99ac835e7037d7360f6c4d5d9c87a435b0f7adf6",
+    "tag": "v0.0.1-alpha.3"
   }
 }
