@@ -84,13 +84,17 @@ export default class Okta extends BaseAuthenticator {
    * @public
    */
   async restore({ accessToken, idToken }) {
-    const newAccessToken = await this._client.token.renew(accessToken);
-    const newIdToken = await this._client.token.renew(idToken);
+    if (Date.now() > (accessToken.expiresAt * 1000)) {
+      const newAccessToken = await this._client.token.renew(accessToken);
+      const newIdToken = await this._client.token.renew(idToken);
 
-    this._renewTokensBeforeExpiry.cancelAll();
-    this._renewTokensBeforeExpiry.perform(newAccessToken.expiresAt);
+      this._renewTokensBeforeExpiry.cancelAll();
+      this._renewTokensBeforeExpiry.perform(newAccessToken.expiresAt);
 
-    return Promise.resolve({ accessToken: newAccessToken, idToken: newIdToken });
+      return Promise.resolve({ accessToken: newAccessToken, idToken: newIdToken });
+    } else {
+      return Promise.resolve({ accessToken, idToken });
+    }
   }
 
   /**
