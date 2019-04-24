@@ -101,7 +101,7 @@ Ember Simple Auth correctly, will kick your user to the login page.
       That just seemed weird.
     </li>
     <li>
-      When signing out using <code>octa-auth-js</code>'s Client instance, it didn't clear
+      When signing out using <code>okta-auth-js</code>'s Client instance, it didn't clear
       the token manager's cache.  We found that we had to do that ourselves and it
       just seemed inconvenient.
     </li>
