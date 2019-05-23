@@ -8,7 +8,7 @@
   "-latest": {
     "path": "",
     "name": "Latest",
-    "sha": "cd732383c5899108f03f74c953624dbb0828de5c",
+    "sha": "fd87bd39b8a8627e0236e25b92047517aeb24dc8",
     "tag": null
   },
   "remove-some-dependencies": {
@@ -26,7 +26,7 @@
   "master": {
     "path": "versions/master",
     "name": "master",
-    "sha": "cd732383c5899108f03f74c953624dbb0828de5c",
+    "sha": "fd87bd39b8a8627e0236e25b92047517aeb24dc8",
     "tag": null
   },
   "v0.0.1-alpha.4": {
