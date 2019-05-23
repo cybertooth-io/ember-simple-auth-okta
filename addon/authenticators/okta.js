@@ -25,6 +25,7 @@ export default class Okta extends BaseAuthenticator {
    * @private
    */
   _client = undefined;
+
   /**
    * The `configuration` service is used to lookup the Okta configuration
    * from our Application's `config/environment.js` files `APP` section.
@@ -32,6 +33,7 @@ export default class Okta extends BaseAuthenticator {
    * @type {Configuration}
    */
   @service configuration;
+
   /**
    * A task that will wait until expiry before triggering a full restore of the session.
    * @param exp the expiry in seconds (unix time)
