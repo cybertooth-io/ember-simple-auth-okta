@@ -41,4 +41,5 @@ Credits
 This addon was made possible with the support of:
 
 1. [Ember Simple Auth](https://github.com/simplabs/ember-simple-auth)
+1. [Ember Concurrency](https://github.com/machty/ember-concurrency)
 1. [Okta's okta-auth-js Library](https://github.com/okta/okta-auth-js)

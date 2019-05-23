@@ -53,9 +53,30 @@
   </div>
 </form>
 
+<div
+  class="docs-bg-white docs-border-t-4 docs-border-grey docs-rounded-b docs-text-brand docs-px-4 docs-py-3 docs-mb-4 docs-shadow-md"
+  role="alert">
+  <div class="docs-flex">
+    <div class="docs-py-1">
+      <svg class="docs-fill-current docs-h-6 docs-w-6 docs-text-brand-500 docs-mr-4" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 20 20">
+        <path
+          d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/>
+      </svg>
+    </div>
+    <div>
+      <p class="docs-font-bold">Try Out These Other Users</p>
+      <p class="docs-text-sm"><code>barry.dylan@odin.com</code> with password <code>@Rcher12</code></p>
+      <p class="docs-text-sm"><code>lana.kane@isi.service</code> with password <code>@Rcher12</code></p>
+      <p class="docs-text-sm"><code>mallory.archer@isi.service</code> with password <code>@Rcher12</code></p>
+      <p class="docs-text-sm"><code>sterling.archer@isi.service</code> with password <code>@Rcher12</code></p>
+    </div>
+  </div>
+</div>
+
 {{#if session.isAuthenticated}}
   <div class="docs-bg-white docs-shadow-md docs-rounded docs-px-8 docs-pt-6 docs-pb-8 docs-mb-4">
-    <div class="docs-font-bold docs-text-xl docs-mb-2">User Details</div>
+    <div class="docs-font-bold docs-text-xl docs-mb-2">ID Token Details</div>
     <div class="docs-font-bold"><code>session.data.authenticated.idToken.claims.email</code></div>
     <div class="docs-mb-2">=> {{session.data.authenticated.idToken.claims.email}}</div>
     <div class="docs-font-bold"><code>session.data.authenticated.idToken.claims.name</code></div>
