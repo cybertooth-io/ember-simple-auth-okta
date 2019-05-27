@@ -206,9 +206,9 @@ workflows:
           requires:
             - yarn_and_cache
 
-      - test_canary:
-          requires:
-            - yarn_and_cache
+      #      - test_canary:
+      #          requires:
+      #            - yarn_and_cache
 
       - test_lts_3_4:
           requires:
