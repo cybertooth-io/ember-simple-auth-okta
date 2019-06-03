@@ -8,7 +8,7 @@
     "okta",
     "oauth2",
     "oidc",
-    "octa-auth-js"
+    "okta-auth-js"
   ],
   "repository": {
     "type": "git",
