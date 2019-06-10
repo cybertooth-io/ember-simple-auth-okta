@@ -54,8 +54,8 @@ export default class Okta extends BaseAuthenticator {
   /**
    * Instance Constructor/Initializer is responsible for creating an instance of the OktaAuth client.
    */
-  constructor() {
-    super(...arguments);
+  init() {
+    super.init(...arguments);
     this._client = new OktaAuth(this.configuration.oktaConfigHash);
   }
 
