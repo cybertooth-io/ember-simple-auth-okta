@@ -16,8 +16,8 @@ export default class ConfigurationService extends Service {
   /** Constructor
    * ---------------------------------------------------------------------------------------------------------------- */
 
-  constructor() {
-    super();
+  init() {
+    super.init(...arguments);
     this._oktaConfigHash = getWithDefault(
       config, 'APP.ember-simple-auth-okta.config', { url: 'https://dev-000000.okta.com' }
     );
