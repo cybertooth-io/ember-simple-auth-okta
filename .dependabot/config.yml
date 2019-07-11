@@ -13,10 +13,10 @@ update_configs:
         - match:
             update_type: security
             dependency_type: indirect
-    automerged_updates: []
-    default_assignees: []
+#    automerged_updates: []
+#    default_assignees: []
     default_labels:
       - dependencies
-    ignored_updates: []
+#    ignored_updates: []
     target_branch: master
     version_requirement_updates: auto
