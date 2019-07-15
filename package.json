@@ -5,6 +5,10 @@
   "keywords": [
     "ember-addon",
     "ember-simple-auth",
+    "jwt",
+    "auth",
+    "authentication",
+    "authorization",
     "okta",
     "oauth2",
     "oidc",
