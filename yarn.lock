@@ -974,9 +974,9 @@
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
 "@okta/okta-auth-js@^2.5.0":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@okta/okta-auth-js/-/okta-auth-js-2.6.1.tgz#e7e6fff2b17a7faeff1f450e7162af244cbf9393"
-  integrity sha512-E5/ZDVFQQ1j6u+z6/VeQC2WCk25zaR4i4Xu73iFnu+aDNpxfFexig1Ippven0CweyNjxAUHMMNJ1rH+YX1IYWg==
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@okta/okta-auth-js/-/okta-auth-js-2.6.3.tgz#24ca6a1a4c2da6b6002bbf81bba97e667187e693"
+  integrity sha512-dy57KLURXRyN/AuJJh3GBAdg+XXP58WDwlruFchFGo5rq8VHooo9UggOqdYVc9wHFoubnJkh9ZS9mEqBGLYfow==
   dependencies:
     Base64 "0.3.0"
     cross-fetch "^3.0.0"
