@@ -16,6 +16,7 @@ module.exports = {
     browser: true
   },
   rules: {
+    'ember/no-new-mixins': 'warn',
     'no-console': ['error', { allow: ['warn', 'error'] }]
   },
   overrides: [
