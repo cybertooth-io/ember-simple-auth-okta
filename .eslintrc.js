@@ -17,7 +17,8 @@ module.exports = {
   },
   rules: {
     'ember/no-new-mixins': 'warn',
-    'no-console': ['error', { allow: ['warn', 'error'] }]
+    'no-console': ['error', { allow: ['warn', 'error'] }],
+    'ember/no-jquery': 'error'
   },
   overrides: [
     // node files
