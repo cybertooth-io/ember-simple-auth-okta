@@ -8,7 +8,7 @@ module.exports = {
   normalizeEntityName() {
   }, // no-op since we're just adding dependencies
 
-  afterInstall: function (/*options*/) {
+  afterInstall(/* options*/) {
     return this.addAddonsToProject({
       packages: [
         { name: 'ember-auto-import' },
@@ -19,7 +19,7 @@ module.exports = {
     }).then(() => {
       return this.addPackagesToProject([
         { name: '@okta/okta-auth-js' }
-      ])
+      ]);
     });
   }
 };

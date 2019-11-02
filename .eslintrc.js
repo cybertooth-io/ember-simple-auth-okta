@@ -5,20 +5,17 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module'
   },
-  plugins: [
-    'ember'
-  ],
-  extends: [
-    'eslint:recommended',
-    'plugin:ember/recommended'
-  ],
+  plugins: ['ember', 'ember-suave'],
+  extends: ['eslint:recommended', 'plugin:ember/recommended', 'plugin:ember-suave/recommended'],
   env: {
     browser: true
   },
   rules: {
-    'ember/no-new-mixins': 'warn',
+    'arrow-parens': 'off',
     'no-console': ['error', { allow: ['warn', 'error'] }],
-    'ember/no-jquery': 'error'
+    'ember/no-jquery': 'error',
+    'ember/no-new-mixins': 'warn',
+    'ember-suave/lines-between-object-properties': 'off'
   },
   overrides: [
     // node files
@@ -33,12 +30,7 @@ module.exports = {
         'config/**/*.js',
         'tests/dummy/config/**/*.js'
       ],
-      excludedFiles: [
-        'addon/**',
-        'addon-test-support/**',
-        'app/**',
-        'tests/dummy/app/**'
-      ],
+      excludedFiles: ['addon/**', 'addon-test-support/**', 'app/**', 'tests/dummy/app/**'],
       parserOptions: {
         sourceType: 'script'
       },

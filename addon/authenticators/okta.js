@@ -1,8 +1,8 @@
 import { getOwner } from '@ember/application';
 import { inject as service } from '@ember/service';
+import OktaAuth from '@okta/okta-auth-js';
 import { task, timeout } from 'ember-concurrency';
 import BaseAuthenticator from 'ember-simple-auth/authenticators/base';
-import OktaAuth from '@okta/okta-auth-js';
 
 /**
  * An __Ember Simple Auth__ `Authenticator` implementation that wraps Okta's
@@ -18,7 +18,6 @@ import OktaAuth from '@okta/okta-auth-js';
  * @public
  */
 export default class Okta extends BaseAuthenticator {
-
   /**
    * The Okta client instantiated in the constructor
    * @type {OktaAuth}
@@ -41,23 +40,19 @@ export default class Okta extends BaseAuthenticator {
    * @private
    * TODO: Refactor @task syntax: https://github.com/cybertooth-io/ember-simple-auth-okta/issues/9
    */
-  @task(function* (exp) {
-    const wait = exp * 1000 - Date.now();
+  // eslint-disable-next-line generator-star-spacing
+  @task(function*(exp) {
+    let wait = exp * 1000 - Date.now();
     console.warn('Scheduled authentication token refresh will occur at ', new Date(exp * 1000));
 
     yield timeout(wait);
 
     console.warn('Commencing refresh of the authentication tokens at ', new Date());
-    return getOwner(this).lookup('session:main').restore();   // TODO: this.restore() won't work...ideally use `this.trigger('sessionDataUpdated')` but the evented approach is not firing!
-  }) _renewTokensBeforeExpiry;
-
-  /**
-   * Instance Constructor/Initializer is responsible for creating an instance of the OktaAuth client.
-   */
-  init() {
-    super.init(...arguments);
-    this._client = new OktaAuth(this.configuration.oktaConfigHash);
-  }
+    return getOwner(this)
+      .lookup('session:main')
+      .restore(); // TODO: this.restore() won't work...ideally use `this.trigger('sessionDataUpdated')` but the evented approach is not firing!
+  })
+  _renewTokensBeforeExpiry;
 
   /**
    *
@@ -66,7 +61,16 @@ export default class Okta extends BaseAuthenticator {
    * @private
    */
   static _isExpired(expiresAtInSeconds) {
-    return Date.now() >= (expiresAtInSeconds * 1000);
+    return Date.now() >= expiresAtInSeconds * 1000;
+  }
+
+  /**
+   * Instance Constructor/Initializer is responsible for creating an instance of the OktaAuth client.
+   * @public
+   */
+  init() {
+    super.init(...arguments);
+    this._client = new OktaAuth(this.configuration.oktaConfigHash);
   }
 
   /**
@@ -94,7 +98,7 @@ export default class Okta extends BaseAuthenticator {
    * @public
    */
   async restore({ accessToken, idToken }) {
-    const data = { accessToken, idToken };
+    let data = { accessToken, idToken };
     if (Okta._isExpired(data.accessToken.expiresAt)) {
       console.warn('Attempting to renew tokens because the stored access token appears to have expired.');
       data.accessToken = await this._client.token.renew(accessToken);
@@ -131,12 +135,12 @@ export default class Okta extends BaseAuthenticator {
    * @public
    */
   async authenticate(username, password) {
-    const sessionInfo = await this._client.signIn({ username, password });
-    const [accessToken] = await this._client.token.getWithoutPrompt({
+    let sessionInfo = await this._client.signIn({ username, password });
+    let [accessToken] = await this._client.token.getWithoutPrompt({
       responseType: ['token'],
       sessionToken: sessionInfo.sessionToken
     });
-    const [idToken] = await this._client.token.getWithoutPrompt({
+    let [idToken] = await this._client.token.getWithoutPrompt({
       responseType: ['id_token'],
       scopes: this.configuration.idTokenScopes,
       sessionToken: sessionInfo.sessionToken
@@ -170,7 +174,8 @@ export default class Okta extends BaseAuthenticator {
    * @return {Ember.RSVP.Promise} A promise that when it resolves results in the session being invalidated
    * @public
    */
-  invalidate(/*data*/) {
+  // eslint-disable-next-line no-unused-vars
+  invalidate(data) {
     this._renewTokensBeforeExpiry.cancelAll();
     return this._client.signOut();
   }

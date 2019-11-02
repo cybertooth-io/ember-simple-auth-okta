@@ -25,7 +25,6 @@ the `APP` section as depicted below:
              * This should actually be your Ember App's URL.
              */
             redirectUri: 'http://localhost:4200/implicit/callback',
-          
             /**
              * Ember Simple Auth does best with local storage.
              * `localStorage` is the default but we're going to explicitly
@@ -36,12 +35,10 @@ the `APP` section as depicted below:
               storage: 'localStorage'
             }
           },
-          
           /**
            * The name of the header to be attached to adapter data requests.
            */
           headerAuthorization: 'Authorization',
-          
           /**
            * This is the array of scopes that will be supplied when requesting the
            * id token. 

@@ -13,7 +13,7 @@ it live like Bill O'Reilly.
 
 ## Add Some Users
 
-<img alt="Okta User Management" src="{{root-url "/assets/docs/images/users.jpg"}}"/>
+<img src="{{root-url "/assets/docs/images/users.jpg"}}"/>
 
 ## Create Your Application
 
@@ -27,15 +27,15 @@ Most of your configuration information lives in this tab.
 * `redirectUri` should be one of the redirect URI's you've added to the application
 configuration.
 
-<img alt="Application General Settings" src="{{root-url "/assets/docs/images/application-general.jpg"}}"/>
+<img src="{{root-url "/assets/docs/images/application-general.jpg"}}"/>
 
 ### Sign On Settings
 
-<img alt="Application Sign On Settings" src="{{root-url "/assets/docs/images/application-sign-on.jpg"}}"/>
+<img src="{{root-url "/assets/docs/images/application-sign-on.jpg"}}"/>
 
 ### Assignments Settings
 
-<img alt="Application Assignments Settings" src="{{root-url "/assets/docs/images/application-assignments.jpg"}}"/>
+<img src="{{root-url "/assets/docs/images/application-assignments.jpg"}}"/>
 
 ### Enabling The Groups Claim
 
@@ -50,10 +50,9 @@ simple developer case it is named `default`
 1. Choose the `Claims` tab
 1. Press the `Add Claim` button to configure a new _groups_
 claim for the access token:
-<img alt="Groups Claim Settings" src="{{root-url "/assets/docs/images/api-authorization-server-claims-access-token-groups.jpg"}}"/>
+<img src="{{root-url "/assets/docs/images/api-authorization-server-claims-access-token-groups.jpg"}}"/>
 1. Press the `Add Claim` button again to configure the _groups_ claim on the id token:
-<img alt="Groups Claim Settings" src="{{root-url "/assets/docs/images/api-authorization-server-claims-id-token-groups.jpg"}}"/>
-
+<img src="{{root-url "/assets/docs/images/api-authorization-server-claims-id-token-groups.jpg"}}"/>
 
 ### CORS Configuration
 
@@ -67,4 +66,4 @@ From the Okta administration console:
 1. Choose the `API > Trust Origins` menu option
 1. Press the `Add Origin` button to configure the new origin
 
-<img alt="Trust Origins" src="{{root-url "/assets/docs/images/api-trusted-origins.jpg"}}"/>
+<img src="{{root-url "/assets/docs/images/api-trusted-origins.jpg"}}"/>
