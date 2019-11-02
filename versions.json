@@ -8,8 +8,8 @@
   "-latest": {
     "path": "",
     "name": "Latest",
-    "sha": "d3f5a49fda8f4edb6dd8e466d00082881589e2df",
-    "tag": null
+    "sha": "e8eaef09b9f947451f3fe1e569436c19aaedd8dd",
+    "tag": "v1.0.0"
   },
   "remove-some-dependencies": {
     "path": "versions/remove-some-dependencies",
@@ -40,5 +40,11 @@
     "name": "changes-for-1.0.0-release",
     "sha": "d3f5a49fda8f4edb6dd8e466d00082881589e2df",
     "tag": null
+  },
+  "v1.0.0": {
+    "path": "versions/v1.0.0",
+    "name": "v1.0.0",
+    "sha": "e8eaef09b9f947451f3fe1e569436c19aaedd8dd",
+    "tag": "v1.0.0"
   }
 }
