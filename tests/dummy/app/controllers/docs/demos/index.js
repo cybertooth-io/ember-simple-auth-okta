@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
-import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default class DocsDemoIndexController extends Controller {
   /**
@@ -27,6 +27,7 @@ export default class DocsDemoIndexController extends Controller {
    * @return {boolean} true to bubble up the DOM event tree, false otherwise.  We do not bubble
    * because this action is bound to a `<form>` element's `onsubmit` event and we don't want the page to
    * reload when the form is submitted.
+   * @public
    */
   @action login(username, password) {
     this.session.authenticate('authenticator:okta', username, password);
@@ -36,11 +37,12 @@ export default class DocsDemoIndexController extends Controller {
   /**
    * The logout action invoked by the logout button in the template.
    * @return {boolean} true to bubble up the DOM event tree, false otherwise.
+   * @public
    */
   @action logout() {
     this.session
       .invalidate()
-      .catch(response => {
+      .catch((response) => {
         console.warn('The session could not be logged out', response);
       });
     return false;

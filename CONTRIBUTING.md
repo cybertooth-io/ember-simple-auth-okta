@@ -1,8 +1,8 @@
 # How To Contribute
 
-## Installation
+## Clone & Setup
 
-* `git clone <repository-url>`
+* `git clone git@github.com:cybertooth-io/ember-simple-auth-okta.git`
 * `cd ember-simple-auth-okta`
 * `yarn install`
 
