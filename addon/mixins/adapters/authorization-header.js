@@ -13,8 +13,8 @@ import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 export default Mixin.create(DataAdapterMixin, {
   authorize(xhr) {
     if (this.session.isAuthenticated) {
-      let { accessToken } = this.session.data.authenticated.accessToken;  // => your token!
-      let { tokenType } = this.session.data.authenticated.accessToken;  // => Bearer
+      let { accessToken } = this.session.data.authenticated.accessToken; // => your token!
+      let { tokenType } = this.session.data.authenticated.accessToken; // => Bearer
 
       xhr.setRequestHeader(this.configuration.headerAuthorization, `${tokenType} ${accessToken}`);
     }

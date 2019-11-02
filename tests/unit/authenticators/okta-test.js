@@ -8,12 +8,11 @@ let CLOCK;
 module('Unit | Authenticator | okta', function(hooks) {
   setupTest(hooks);
 
-  hooks
-    .afterEach(function() {
-      if (CLOCK) {
-        CLOCK.restore();
-      }
-    });
+  hooks.afterEach(function() {
+    if (CLOCK) {
+      CLOCK.restore();
+    }
+  });
 
   // TODO: this test will not work in 2.18?
   skip('it exists', function(assert) {

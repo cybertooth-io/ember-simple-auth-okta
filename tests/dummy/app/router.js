@@ -10,8 +10,7 @@ Router.map(function() {
   docsRoute(this, function() {
     this.route('adapter');
     this.route('configuration');
-    this.route('demos', function() {
-    });
+    this.route('demos', function() {});
     this.route('okta');
     this.route('usage');
   });

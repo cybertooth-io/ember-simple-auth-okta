@@ -40,11 +40,9 @@ export default class DocsDemoIndexController extends Controller {
    * @public
    */
   @action logout() {
-    this.session
-      .invalidate()
-      .catch((response) => {
-        console.warn('The session could not be logged out', response);
-      });
+    this.session.invalidate().catch(response => {
+      console.warn('The session could not be logged out', response);
+    });
     return false;
   }
 }

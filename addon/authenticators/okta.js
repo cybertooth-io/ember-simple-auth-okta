@@ -18,7 +18,6 @@ import BaseAuthenticator from 'ember-simple-auth/authenticators/base';
  * @public
  */
 export default class Okta extends BaseAuthenticator {
-
   /**
    * The Okta client instantiated in the constructor
    * @type {OktaAuth}
@@ -41,15 +40,19 @@ export default class Okta extends BaseAuthenticator {
    * @private
    * TODO: Refactor @task syntax: https://github.com/cybertooth-io/ember-simple-auth-okta/issues/9
    */
-  @task(function* (exp) {
+  // eslint-disable-next-line generator-star-spacing
+  @task(function*(exp) {
     let wait = exp * 1000 - Date.now();
     console.warn('Scheduled authentication token refresh will occur at ', new Date(exp * 1000));
 
     yield timeout(wait);
 
     console.warn('Commencing refresh of the authentication tokens at ', new Date());
-    return getOwner(this).lookup('session:main').restore();   // TODO: this.restore() won't work...ideally use `this.trigger('sessionDataUpdated')` but the evented approach is not firing!
-  }) _renewTokensBeforeExpiry;
+    return getOwner(this)
+      .lookup('session:main')
+      .restore(); // TODO: this.restore() won't work...ideally use `this.trigger('sessionDataUpdated')` but the evented approach is not firing!
+  })
+  _renewTokensBeforeExpiry;
 
   /**
    *
@@ -58,7 +61,7 @@ export default class Okta extends BaseAuthenticator {
    * @private
    */
   static _isExpired(expiresAtInSeconds) {
-    return Date.now() >= (expiresAtInSeconds * 1000);
+    return Date.now() >= expiresAtInSeconds * 1000;
   }
 
   /**
@@ -171,7 +174,8 @@ export default class Okta extends BaseAuthenticator {
    * @return {Ember.RSVP.Promise} A promise that when it resolves results in the session being invalidated
    * @public
    */
-  invalidate(data) { // eslint-disable-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars
+  invalidate(data) {
     this._renewTokensBeforeExpiry.cancelAll();
     return this._client.signOut();
   }
