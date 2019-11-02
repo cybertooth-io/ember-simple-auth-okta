@@ -5,8 +5,7 @@ module.exports = {
 
   name: 'ember-simple-auth-okta',
 
-  normalizeEntityName() {
-  }, // no-op since we're just adding dependencies
+  normalizeEntityName() {}, // no-op since we're just adding dependencies
 
   afterInstall(/* options*/) {
     return this.addAddonsToProject({
@@ -17,9 +16,7 @@ module.exports = {
         { name: 'ember-simple-auth' }
       ]
     }).then(() => {
-      return this.addPackagesToProject([
-        { name: '@okta/okta-auth-js' }
-      ]);
+      return this.addPackagesToProject([{ name: '@okta/okta-auth-js' }]);
     });
   }
 };
