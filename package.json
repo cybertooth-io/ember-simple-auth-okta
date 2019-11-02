@@ -1,6 +1,6 @@
 {
   "name": "ember-simple-auth-okta",
-  "version": "0.0.1-rc.1",
+  "version": "1.0.0",
   "description": "Ember Simple Auth implementation wrapping `okta-auth-js`.",
   "keywords": [
     "ember-addon",
