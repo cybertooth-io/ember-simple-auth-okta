@@ -1,7 +1,14 @@
-{{docs-header}}
-
 {{#docs-viewer as |viewer|}}
-  {{viewer.nav}}
+  {{#viewer.nav as |nav|}}
+    {{nav.section "Introduction"}}
+    {{nav.item "Installation" "docs.index"}}
+    {{nav.item "Configuration" "docs.configuration"}}
+    {{nav.item "Usage" "docs.usage"}}
+    {{nav.item "Ember Data Adapter" "docs.adapter"}}
+    {{nav.item "Okta Reference" "docs.okta"}}
+    {{nav.section "Demos"}}
+    {{nav.item "Basic" "docs.demos.index"}}
+  {{/viewer.nav}}
 
   {{#viewer.main}}
     <div class="docs-container">
