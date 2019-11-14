@@ -994,9 +994,9 @@
     fastq "^1.6.0"
 
 "@okta/okta-auth-js@^2.5.0":
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/@okta/okta-auth-js/-/okta-auth-js-2.9.0.tgz#668cf95003cd2196871b98e13317d8f35f459108"
-  integrity sha512-GO0u1vRmMybPPINWyEZ68muBIt+gPOxaEOfgB22uRLBbsStgr2mnLFFmVpc9gNOpcEDgKI49px9pUrHda3Dqhg==
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/@okta/okta-auth-js/-/okta-auth-js-2.10.0.tgz#19aaaa687dd88475e1dc021b6a208a4a0f0c943c"
+  integrity sha512-d2beX/0EMwerGt8Rn2UjTO7+ebadoAVj0ldruNhA8OiILcF3m2C2XHoyomUbIBNsmM+kQdnWMXtu3kw24DpUDA==
   dependencies:
     Base64 "0.3.0"
     cross-fetch "^3.0.0"
