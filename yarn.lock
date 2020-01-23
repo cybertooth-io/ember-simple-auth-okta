@@ -1144,10 +1144,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@okta/okta-auth-js@2.11.0":
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/@okta/okta-auth-js/-/okta-auth-js-2.11.0.tgz#b1bde80f6362da974ac6ef1dbf5d21b1d6a0b907"
-  integrity sha512-oRSpk36KY4rD4L2jCcz89egr+nzPgILUkS9pJOdRdjtpIv9BrjkSYQIicllOaiet+9X7KE+oqGHa0HiFz7fUJw==
+"@okta/okta-auth-js@2.12.1":
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/@okta/okta-auth-js/-/okta-auth-js-2.12.1.tgz#b084767fe993e99031a6278e98fb695e59ce4501"
+  integrity sha512-aXExxoG0Qb1NP+xsSDa6+f1ekf34PQ5JEC2RnNNlKLFoNLfmue3Hlg7dB7Wqv87lepNBT7yDuRchc5cuam8huA==
   dependencies:
     Base64 "0.3.0"
     cross-fetch "^3.0.0"
