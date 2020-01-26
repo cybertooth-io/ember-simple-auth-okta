@@ -11,10 +11,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Set Node.js 8.x
+      - name: Set Node.js
         uses: actions/setup-node@master
         with:
-          node-version: 8.x
+          node-version: 10.x
 
       - name: Get yarn cache
         id: yarn-cache
