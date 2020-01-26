@@ -39,6 +39,8 @@ jobs:
           COVERAGE: 'true'
       - name: Report Coverage
         run: node_modules/.bin/codeclimate-test-reporter < coverage/lcov.info
+        env:
+          CODECLIMATE_REPO_TOKEN: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
 
 #  ember-try:
 #    name: ember-try (${{ matrix.scenario }})
